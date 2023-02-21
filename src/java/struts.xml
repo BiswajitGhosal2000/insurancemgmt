@@ -1,0 +1,46 @@
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+    <!-- Configuration for the default package. -->
+    <package name="default" namespace="/" extends="struts-default">
+        <action name="Login" class="com.exavalu.models.Login" method="doLogin">
+            <result name="OFFICER">officerpage.jsp</result>
+            <result name="UNDERWRITER">underwriterpage.jsp</result>
+            <result name="USER">userpage.jsp</result>
+            <result name="FAILURE">login.jsp</result>
+        </action>
+        <action name="Logout" class="com.exavalu.models.Login" method="doLogOut">
+            <result name="SUCCESS">home.jsp</result>
+        </action>
+        <action name="ApplyClaim" class="com.exavalu.models.Claim" method="applyClaim">
+            <result name="SUCCESS">userpage.jsp</result>
+            <result name="FAILURE">applyclaim.jsp</result>
+        </action>
+        <action name="Track" class="com.exavalu.models.Claim" method="track">
+            <result name="SUCCESS">userpage.jsp</result>
+            <result name="FAILURE">userpage.jsp</result>
+        </action>
+        <action name="ViewClaim" class="com.exavalu.models.Claim" method="viewClaim">
+            <result name="SUCCESS">viewclaim.jsp</result>
+            <result name="FAILURE">underwriterpage.jsp</result>
+        </action>
+        <action name="Approve" class="com.exavalu.models.Claim" method="approve">
+            <result name="SUCCESS">underwriterpage.jsp</result>
+            <result name="FAILURE">viewclaim.jsp</result>
+        </action>
+        <action name="Reject" class="com.exavalu.models.Claim" method="reject">
+            <result name="SUCCESS">underwriterpage.jsp</result>
+            <result name="FAILURE">viewclaim.jsp</result>
+        </action>
+        <action name="Sanction" class="com.exavalu.models.Claim" method="sanction">
+            <result name="SUCCESS">officerpage.jsp</result>
+            <result name="FAILURE">officerpage.jsp</result>
+        </action>
+        <action name="Policies" class="com.exavalu.models.Policies" method="getAllPolicies">
+            <result name="SUCCESS">policies.jsp</result>
+            <result name="FAILURE">policies.jsp</result>
+        </action>
+    </package>
+</struts>
