@@ -44,7 +44,7 @@
                                 <td>${claim.getDriverName()}</td>
                                 <td>${claim.getDriverLicense()}</td>
                                 <td>${claim.getPolicyId()}</td>
-                                <td><a onclick="showDetails('ViewClaim',${claim.getClaimId()})">View Details</a></td>
+                                <td><a onclick="showDetails('ViewClaim',${claim.getClaimId()})" class="btn btn-success">View Details</a></td>
                                 <!--<td><a href="ViewClaim?claimId=${claim.getClaimId()}" class="btn btn-success">View</a></td>-->
                             </tr>
                         </c:forEach>
@@ -58,10 +58,11 @@
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <div class="h-50 p-5 text-white rounded-3" id="dmv">
+                    <div class="h-50 p-1 text-white rounded-3 mt-5" id="insurance">
                     </div>
-                    <div class="h-50 p-5 text-white rounded-3" id="insurance">
+                    <div class="h-50 p-1 text-white rounded-3" id="dmv">
                     </div>
+                    
                 </div>
             </div>
         </main>

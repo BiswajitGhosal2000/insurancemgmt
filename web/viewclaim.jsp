@@ -55,10 +55,14 @@
                                     <td><input name="policyId" class="form-control" id="policyId" value="${Claim.getPolicyId()}" readonly></td>
                                 </tr>
                             </table>
-                                <a class="btn btn-success mt-3 w-25" onclick="goTo('dmvdetails.jsp','dmv')">Check DMV Details</a>
-                            <a class="btn btn-danger mt-3 w-25" onclick="goTo('insurancedetails.jsp','insurance')">Check Insurance Details</a>
-                            <a class="btn btn-success mt-3 w-25" href="Approve?claimId=${Claim.getClaimId()}">Approve</a>
-                            <a class="btn btn-danger mt-3 w-25" href="Reject?claimId=${Claim.getClaimId()}">Reject</a>
+                            <div>
+                                <a class="btn btn-info mt-3" onclick="goTo('insurancedetails.jsp', 'insurance')">Check Insurance Details</a>
+                                <a class="btn btn-info mt-3" onclick="goTo('dmvdetails.jsp', 'dmv')">Check DMV Details</a>
+                            </div>
+                            <div>
+                                <a class="btn btn-success mt-3 w-25" href="Approve?claimId=${Claim.getClaimId()}">Approve</a>
+                                <a class="btn btn-danger mt-3 w-25" href="Reject?claimId=${Claim.getClaimId()}">Reject</a>
+                            </div>
                         </form>
                     </div>
                 </div>
@@ -67,17 +71,17 @@
                 </footer>
             </div>
         </main>
-            <script>
-                function goTo(method,id){
+        <script>
+            function goTo(method, id) {
                 $.ajax({
-                url: method,
-                success: function (responseText) {
-                //console.log(responseText);
-                $("#"+id).html(responseText);
-                }
+                    url: method,
+                    success: function (responseText) {
+                        //console.log(responseText);
+                                        $("#" + id).html(responseText);
+                                    }
                 });
-                            }
-                        </script>
+            }
+        </script>
         <script src="https://getbootstrap.com/docs/5.0/dist/js/bootstrap.bundle.min.js"></script>
         <script src="js/dmvpolicy.js"></script>
     </body>
