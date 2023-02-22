@@ -46,9 +46,9 @@
                             <h1 class="text-danger"><c:out value="${Rejected}"></c:out></h1>
                             <c:remove var="Rejected" scope="session"/>
                         </c:if>
-                        <div class="table m-auto p-3">
-                            <table>
-                                <thead>
+                        <div class=" m-auto p-3">
+                            <table class="table table-bordered table-striped">
+                                <thead class="bg-warning">
                                     <tr>
                                         <th>Claim Id</th>
                                         <th>Insurance Id</th>
@@ -84,7 +84,7 @@
                                         </c:choose></td>
                                         <td><c:choose>
                                             <c:when test="${claim.isIssanctioned()== true}">
-                                                <c:out value="Sanctioned by UnderWriter"></c:out>
+                                                <c:out value="Sanctioned by Officer"></c:out>
                                             </c:when>
                                             <c:when test="${claim.isIsrejected() == true}">
                                                 <c:out value="Rejected by UnderWriter"></c:out>
