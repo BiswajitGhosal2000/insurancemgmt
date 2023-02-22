@@ -203,4 +203,35 @@ public class ClaimService {
         }
         return res;  
     }
+
+    public static ArrayList getAllClaimsByUserId(int userId) {
+        ArrayList claimList = new ArrayList();
+
+        String sql = "SELECT * FROM claim where insuranceId=?";
+        try {
+            Connection con = JDBCConnectionManager.getConnection();
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1,userId);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Claim claim = new Claim();
+                claim.setClaimId(rs.getInt("claimId"));
+                claim.setInsuranceId(rs.getInt("insuranceId"));
+                claim.setUserName(rs.getString("ownerName"));
+                claim.setDate(rs.getString("date"));
+                claim.setDriverId(rs.getInt("driverId"));
+                claim.setDriverName(rs.getString("driverName"));
+                claim.setDriverLicense(rs.getString("driverLicense"));
+                claim.setPolicyId(rs.getString("policyId"));
+                claim.setIsapproved(rs.getBoolean("isapproved"));
+                claim.setIsrejected(rs.getBoolean("isrejected"));
+                claim.setIssanctioned(rs.getBoolean("issanctioned"));
+                claimList.add(claim);
+                System.out.println(rs.getBoolean("isapproved"));
+            }
+        } catch (SQLException ex) {
+            logger.error(ex.getMessage() + LocalDateTime.now());
+        }
+        return claimList;
+    }
 }

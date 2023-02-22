@@ -46,11 +46,57 @@
                             <h1 class="text-danger"><c:out value="${Rejected}"></c:out></h1>
                             <c:remove var="Rejected" scope="session"/>
                         </c:if>
-                        <div class="form-control w-25 m-auto p-3">
-                            <form action="Track" method="Post">
-                                <input type="text" class="form-control" id="insuranceId" placeholder="insuranceId" name="insuranceId" value="${User.getUserId()}" required autofocus>
-                                <button type="submit" class="btn btn-warning mt-3">Track</button>
-                            </form>
+                        <div class="table m-auto p-3">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Claim Id</th>
+                                        <th>Insurance Id</th>
+                                        <th>Owner Name</th>
+                                        <th>Driver Id</th>
+                                        <th>Driver Name</th>
+                                        <th>Driver License</th>
+                                        <th>Policy Id</th>
+                                        <th>Under Writer Status</th>
+                                        <th>Officer Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                <c:forEach var="claim" items="${UserClaimList}">
+                                    <tr>
+                                        <td>${claim.getClaimId()}</td>
+                                        <td>${claim.getInsuranceId()}</td>
+                                        <td>${claim.getUserName()}</td>
+                                        <td>${claim.getDriverId()}</td>
+                                        <td>${claim.getDriverName()}</td>
+                                        <td>${claim.getDriverLicense()}</td>
+                                        <td>${claim.getPolicyId()}</td>
+                                        <td><c:choose>
+                                            <c:when test="${claim.isIsapproved() == true}">
+                                                <c:out value="Forwarded to Officer"></c:out>
+                                            </c:when>
+                                            <c:when test="${claim.isIsrejected() == true}">
+                                                <c:out value="Rejected by UnderWriter"></c:out>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <c:out value="Under Process"></c:out>
+                                            </c:otherwise>
+                                        </c:choose></td>
+                                        <td><c:choose>
+                                            <c:when test="${claim.isIssanctioned()== true}">
+                                                <c:out value="Sanctioned by UnderWriter"></c:out>
+                                            </c:when>
+                                            <c:when test="${claim.isIsrejected() == true}">
+                                                <c:out value="Rejected by UnderWriter"></c:out>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <c:out value="Under Process"></c:out>
+                                            </c:otherwise>
+                                        </c:choose></td>                                   
+                                    </tr>
+                                </c:forEach>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>

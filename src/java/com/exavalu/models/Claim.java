@@ -23,9 +23,52 @@ import org.apache.struts2.interceptor.SessionAware;
  */
 public class Claim extends ActionSupport implements ApplicationAware, SessionAware, Serializable {
 
+    /**
+     * @return the isapproved
+     */
+    public boolean isIsapproved() {
+        return isapproved;
+    }
+
+    /**
+     * @param isapproved the isapproved to set
+     */
+    public void setIsapproved(boolean isapproved) {
+        this.isapproved = isapproved;
+    }
+
+    /**
+     * @return the isrejected
+     */
+    public boolean isIsrejected() {
+        return isrejected;
+    }
+
+    /**
+     * @param isrejected the isrejected to set
+     */
+    public void setIsrejected(boolean isrejected) {
+        this.isrejected = isrejected;
+    }
+
+    /**
+     * @return the issanctioned
+     */
+    public boolean isIssanctioned() {
+        return issanctioned;
+    }
+
+    /**
+     * @param issanctioned the issanctioned to set
+     */
+    public void setIssanctioned(boolean issanctioned) {
+        this.issanctioned = issanctioned;
+    }
+
     static Logger logger = Logger.getLogger(Claim.class.getName());
     private int claimId, insuranceId, driverId;
     private String userName, date, driverName, driverLicense, policyId;
+    private boolean isapproved, isrejected, issanctioned;
 
     /**
      * @return the claimId
@@ -228,6 +271,8 @@ public class Claim extends ActionSupport implements ApplicationAware, SessionAwa
 
         if (success) {
             System.out.println("Added");
+            ArrayList claimList = ClaimService.getAllClaimsByUserId(User.getInstance().getUserId());
+            sessionMap.put("UserClaimList", claimList);
             result = "SUCCESS";
         } else {
             System.out.println("Claim is not Filed");

@@ -97,8 +97,10 @@ public class Login extends ActionSupport implements ApplicationAware, SessionAwa
                 System.out.println("ClaimList Size" + claimList.size());
                 result = "UNDERWRITER";
         }else if (success.equalsIgnoreCase("USER")){
-                System.out.println("returning Success from doLogin method");
+                System.out.println("returning Success from doLogin method: User");
                 sessionMap.put("User", User.getInstance());
+                ArrayList claimList = ClaimService.getAllClaimsByUserId(User.getInstance().getUserId());
+                sessionMap.put("UserClaimList", claimList);
                 result = "USER";
         }else{
             logger.error(LocalDateTime.now());
